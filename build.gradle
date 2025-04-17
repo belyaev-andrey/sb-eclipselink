@@ -18,8 +18,16 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude group: 'org.hibernate.orm', module: 'hibernate-core'
+        exclude group: 'org.hibernate.validator', module: 'hibernate-validator'
+        exclude group: 'org.hibernate.common', module: 'hibernate-commons-annotations'
+        exclude group: 'org.jboss.logging', module: 'jboss-logging'
+    }
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-database-postgresql'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
